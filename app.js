@@ -10,7 +10,7 @@ import userRouter from './routes/user.js';
 import auth from './middlewares/auth.js';
 import cors from 'cors';
 
-
+import axios from 'axios';
 
 
 const app = express();
@@ -32,6 +32,33 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use("/products", productRouter) // add auth
 app.use("/api/v1/users", userRouter);
+
+
+app.get('/generate_report/:vin', async (req, res) => {
+
+  const vin = req.params.vin;
+  console.log(vin);
+  const api_url = `https://app.carsimulcast.com/api/generate_report/carfax/${vin}`;
+  const headers = {
+    "API-KEY": "OHDVIJTKQQJHBUWXMYLUAAEKXPSNAZ",
+    "API-SECRET": "tywkhg70nn4geqe5dp8ck2d3m81b5rzj3u90uqi9",
+  };
+
+  try {
+    const response = await axios.get(api_url, { headers });
+
+    // Decode the base64 string to HTML
+    const decodedHtml = Buffer.from(response.data, 'base64').toString('utf-8');
+
+    console.log(decodedHtml);
+
+    // Send the HTML as a response
+    res.send(decodedHtml);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error fetching or processing the report.');
+  }
+});
 
 
 cloudinary.config({
