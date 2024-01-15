@@ -70,7 +70,7 @@ cloudinary.config({
 const port = process.env.PORT || 5100;
 
 try {
-  await mongoose.connect(process.env.MONGO_URL);
+  await mongoose.connect("mongodb+srv://adesiyantope2014:Temade123@cluster0.a6l89lj.mongodb.net/");
   app.listen(port, () => {
     console.log(`Server is running on ${port}`);
   })
