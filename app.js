@@ -69,9 +69,9 @@ app.post('/api/invoice-created', async (req, res) => {
     console.log(data, "data");
     const { id } = data
     const {order_id, location_id } = data.object.invoice;
-    const { email_address } = data.object.invoice.primary_recipient
-
-    console.log(email_address, id);
+    // const { email_address } = data.object.invoice.primary_recipient
+    
+    console.log(id);
   }
 
 
