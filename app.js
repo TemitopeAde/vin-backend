@@ -62,17 +62,17 @@ app.get('/generate_report/:vin', async (req, res) => {
 
 app.post('/api/invoice-created', async (req, res) => {
 
-  // const { type, data } = res.body;
+  const { type, data } = req.body;
   console.log(req.body);
 
-  // if (type === "invoice.created") {
-  //   console.log(data, "data");
-  //   const { id } = data
-  //   const {order_id, location_id } = data.object.invoice;
-  //   const { email_address } = data.object.invoice.primary_recipient
+  if (type === "invoice.created") {
+    console.log(data, "data");
+    const { id } = data
+    const {order_id, location_id } = data.object.invoice;
+    const { email_address } = data.object.invoice.primary_recipient
 
-  //   console.log(email_address, id);
-  // }
+    console.log(email_address, id);
+  }
 
 
   res.status(200).json({
