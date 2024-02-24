@@ -63,7 +63,7 @@ app.get('/generate_report/:vin', async (req, res) => {
 app.post('/api/invoice-created', async (req, res) => {
 
   // const { type, data } = res.body;
-  console.log(res.body);
+  console.log(req.body);
 
   // if (type === "invoice.created") {
   //   console.log(data, "data");
